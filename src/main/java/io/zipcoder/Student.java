@@ -57,12 +57,29 @@ public class Student {
     }
 
     public void setExamScores(int examNumber, double newScore) {
-                //this.examNumber = examNumber;
-                //this.newScore = newScore;
+
+            examScores.add(examNumber-1 ,newScore);
+            examScores.remove(examNumber);
+
+
     }
 
     public Integer getNumberofTestTaken() {
         return this.examScores.size();
 
     }
+
+    @Override
+        public String toString(){
+        String studentName = "Chalie";
+        String studentLastName= "Wilmer";
+        StringBuilder sb = new StringBuilder();
+        sb.append(studentName);
+        sb.append(studentLastName);
+        sb.append(getExamScores());
+        return sb.toString();
+
+    }
+
+
 }

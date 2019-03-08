@@ -2,7 +2,9 @@ package io.zipcoder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+
 
 public class Classroom {
 
@@ -28,7 +30,6 @@ public class Classroom {
     }
 
     public double getAverageExamScore() {
-        // summ of all test grades and divdied by the amount of test taken.
         double examScore = 0.0;
         for (Student student : this.students) {
             examScore = student.getAverageExamScore();
@@ -63,7 +64,10 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
-        return null;
+        StudentComparator sc = new StudentComparator();
+        Arrays.sort(students, sc);
+
+        return students;
     }
 
 }
