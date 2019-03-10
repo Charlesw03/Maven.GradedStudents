@@ -1,9 +1,8 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import sun.applet.resources.MsgAppletViewer;
+
+import java.util.*;
 
 
 public class Classroom {
@@ -43,8 +42,7 @@ public class Classroom {
         // add a student to the student arraylist
         List<Student> listofStudents = new ArrayList<Student>(Arrays.asList(this.students));
         listofStudents.add(student);
-        listofStudents.remove(0);
-        this.students = listofStudents.toArray(new Student[0]);
+        this.students = listofStudents.toArray(new Student[listofStudents.size()]);
 
     }
 
@@ -68,6 +66,41 @@ public class Classroom {
         Arrays.sort(students, sc);
 
         return students;
+    }
+
+    public String getGradeBook() {
+        Map<String, String> gradeBook = new TreeMap<>();
+        // students is sorted by grade or/and  name(alphabetically)
+        students = getStudentsByScore();
+
+        for (int i = 0; i < students.length; i++) {
+            Double percentile = (double) students.length - i / students.length;
+            String fullName = students[i].getFirstName() + " " + students[i].getLastName();
+            //make a method that gets a string letter grade.
+            gradeBook.put(fullName,getLetterGrade(percentile));
+        }
+
+        return gradeBook.toString();
+    }
+
+    public String getLetterGrade(Double percentile) {
+
+
+        String letterGrade = "";
+        if (percentile >= .9) {
+            letterGrade += "A";
+        } else if (percentile >= .8 && percentile <= .89) {
+            letterGrade += "B";
+        } else if (percentile >= .7 && percentile <= .79) {
+            letterGrade += "C";
+        } else if (percentile >= .6 && percentile <= .69) {
+            letterGrade += "D";
+        } else if (percentile >= .00 && percentile <= .59) {
+            letterGrade += "F";
+        }
+
+
+        return letterGrade;
     }
 
 }

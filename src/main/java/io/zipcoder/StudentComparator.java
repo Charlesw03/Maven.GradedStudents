@@ -9,7 +9,7 @@ public class StudentComparator implements Comparator<Student> {
     @Override
     public int compare(Student o1, Student o2) {
         int result = (int) (o2.getAverageExamScore() - o1.getAverageExamScore());
-        if (result == 0) {
+        if (o1 == o2) {
             return o1.getFirstName().compareTo(o2.getFirstName());
         } else {
             return result;
