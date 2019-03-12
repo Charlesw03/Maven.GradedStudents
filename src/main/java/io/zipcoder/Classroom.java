@@ -41,7 +41,13 @@ public class Classroom {
     public void addStudent(Student student) {
         // add a student to the student arraylist
         List<Student> listofStudents = new ArrayList<Student>(Arrays.asList(this.students));
-        listofStudents.add(student);
+
+        if(listofStudents.contains(null)){
+            listofStudents.remove(null);
+            listofStudents.add(student);
+        }else{
+            listofStudents.add(student);
+        }
         this.students = listofStudents.toArray(new Student[listofStudents.size()]);
 
     }
@@ -64,12 +70,11 @@ public class Classroom {
     public Student[] getStudentsByScore() {
         StudentComparator sc = new StudentComparator();
         Arrays.sort(students, sc);
-
         return students;
     }
 
     public String getGradeBook() {
-        Map<String, String> gradeBook = new TreeMap<>();
+        Map<String, String> gradeBook = new HashMap<>();
         // students is sorted by grade or/and  name(alphabetically)
         students = getStudentsByScore();
 

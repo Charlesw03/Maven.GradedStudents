@@ -7,7 +7,7 @@ public class Student {
 
     private String firstName;
     private String lastName;
-    private ArrayList<Double> examScores;
+    private List<Double> examScores;
 
     public Student() {
         this("charlie", "wilmer", new ArrayList<Double>());
@@ -16,7 +16,7 @@ public class Student {
     public Student(String firstName, String lastName, List<Double> testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScores = new ArrayList<>(testScores);
+        this.examScores = testScores;
     }
 
     public String getFirstName() {
